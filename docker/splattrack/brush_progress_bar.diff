@@ -1,0 +1,87 @@
+diff --git a/crates/brush-cli/src/lib.rs b/crates/brush-cli/src/lib.rs
+index 19b81d7..ac6e685 100644
+--- a/crates/brush-cli/src/lib.rs
++++ b/crates/brush-cli/src/lib.rs
+@@ -74,34 +74,24 @@ pub async fn run_cli_ui(
+         ProgressStyle::with_template("{spinner:.blue} {msg}")
+             .expect("Invalid indacitif config")
+             .tick_strings(&[
+-                "🖌️      ",
+-                "█🖌️     ",
+-                "▓█🖌️    ",
+-                "░▓█🖌️   ",
+-                "•░▓█🖌️  ",
+-                "·•░▓█🖌️ ",
+-                " ·•░▓🖌️ ",
+-                "  ·•░🖌️ ",
+-                "   ·•🖌️ ",
+-                "    ·🖌️ ",
+-                "     🖌️ ",
+-                "    🖌️ █",
+-                "   🖌️ █▓",
+-                "  🖌️ █▓░",
+-                " 🖌️ █▓░•",
+-                "🖌️ █▓░•·",
+-                "🖌️ ▓░•· ",
+-                "🖌️ ░•·  ",
+-                "🖌️ •·   ",
+-                "🖌️ ·    ",
+-                "🖌️      ",
++                "[#.....]",
++                "[##....]",
++                "[###...]",
++                "[.###..]",
++                "[..###.]",
++                "[...###]",
++                "[....##]",
++                "[.....#]",
++                "[......]",
++                "[......]",
++                "[......]",
+             ]),
+     );
+ 
+     let stats_spinner = ProgressBar::new_spinner().with_style(
+         ProgressStyle::with_template("{spinner:.blue} {msg}")
+             .expect("Invalid indicatif config")
+-            .tick_strings(&["ℹ️", "ℹ️"]),
++            .tick_strings(&["[i]", "[i]"]),
+     );
+ 
+     #[cfg(feature = "training")]
+@@ -112,7 +102,7 @@ pub async fn run_cli_ui(
+             ProgressStyle::with_template(
+                 "[{elapsed}] {bar:40.cyan/blue} {pos:>7}/{len:7} {msg} ({per_sec}, {eta} remaining)",
+             )
+-            .expect("Invalid indicatif config").progress_chars("◍○○"),
++            .expect("Invalid indicatif config").progress_chars("##."),
+         )
+         .with_message("Steps");
+         sp.add(bar)
+@@ -126,7 +116,7 @@ pub async fn run_cli_ui(
+         ProgressBar::new_spinner().with_style(
+             ProgressStyle::with_template("{spinner:.blue} {msg}")
+                 .expect("Invalid indicatif config")
+-                .tick_strings(&["✅", "✅"]),
++                .tick_strings(&["[OK]", "[OK]"]),
+         ),
+     );
+ 
+@@ -142,7 +132,7 @@ pub async fn run_cli_ui(
+ 
+     if cfg!(debug_assertions) {
+         let _ =
+-            sp.println("ℹ️  running in debug mode, compile with --release for best performance");
++            sp.println("[i] running in debug mode, compile with --release for best performance");
+     }
+ 
+     #[allow(unused_mut)]
+@@ -235,7 +225,7 @@ pub async fn run_cli_ui(
+             }
+             ProcessMessage::Warning { error } => {
+                 log::warn!("{error}");
+-                sp.println(format!("⚠️: {error}"))?;
++                sp.println(format!("[WARN]: {error}"))?;
+             }
+             #[allow(unreachable_patterns)]
+             _ => {}
