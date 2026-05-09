@@ -45,15 +45,19 @@ The output will be placed in `docker/splattrack/workspace/scenes`, follwing the 
             └── dataset_exports     - 3D Gaussian Splat
 ```
 
+The processing consists of several steps, if one fails the whole pipeline stops and continues with the next video file. The progress is saved, a completed step will not be processed again upon retry.
+
 ### Settings
 
-The default settings are leaning to more accura and detailed results, changing them can reduce the processing time significantly, see the [.env.example](docker/splattrack/.env.example) for the details.
+The default settings are leaning to more accurate and detailed results, changing them can reduce the processing time significantly, see the [.env.example](docker/splattrack/.env.example) for the details.
 
 Override the default settings in the .env file, or by setting the environment variables when starting the container, e.g.:
 
 ```bash
 docker compose run -e EXTRACT_FPS=2 -e SEQUENTIAL_OVERLAP=8 --rm splattrack
 ```
+
+NOTE: if you change any settings and want to reprocess a video, you should delete the corresponding directory under `scenes`, or just the the `*_done` flags of the steps you want to rerun.
 
 ## How to use the results
 
