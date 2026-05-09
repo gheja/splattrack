@@ -1,0 +1,6 @@
+services:
+  supersplat:
+    image: d3smond/supersplat:latest
+    ports:
+      - 3000:3000
+    command: ["npm", "run", "develop"]
