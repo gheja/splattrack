@@ -8,18 +8,10 @@ Based on [polyfjord's Windows workflow](https://gist.github.com/polyfjord/fc22f2
 
 ### First time setup
 
-The image is not on Docker Hub yet, so you will have to build it, luckily it is a straightforward task.
+Copy and edit the settings file:
 
-Build the container:
 ```bash
 cd docker/splattrack
-docker compose build
-```
-
-This process takes about 50 minutes (on an Intel Core i7-1185G7), and uses about 25 GiB of disk space.
-
-Copy and edit the settings file:
-```bash
 cp .env.example .env
 ```
 
@@ -92,3 +84,13 @@ For publishing the splat you would need a Playcanvas account, or you can also ex
 1. Install the [3DGS Render Blender Addon](https://github.com/Kiri-Innovation/3dgs-render-blender-addon) (see notes there for Blender 5.1)
 2. ...
 3. Click *Import*
+
+### Building the project
+
+The image is on [Docker Hub](https://hub.docker.com/r/gheja/splattrack), so you can reference `gheja/splattrack`.
+
+If you want to build it yourself, it is a straightforward task, although it takes about 50 minutes (on an Intel Core i7-1185G7), and uses about 25 GiB of disk space:
+```bash
+cd docker/splattrack
+docker compose build
+```
