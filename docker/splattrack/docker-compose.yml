@@ -1,10 +1,10 @@
 services:
   splattrack:
+    image: gheja/splattrack:0.1.1
+    platform: linux/amd64
     build:
       context: .
       dockerfile: Dockerfile
-    platform: linux/amd64
-    image: splattrack:0.1.1
     env_file: .env
     devices:
       - nvidia.com/gpu=all
